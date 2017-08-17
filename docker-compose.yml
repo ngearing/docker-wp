@@ -1,0 +1,20 @@
+web:
+  image: wordpress
+  links:
+    - mysql
+  domainname: tripler.dev
+  environment:
+    WORDPRESS_DB_PASSWORD: password
+    DOMAIN_NAME: "tripler.dev, www.tripler.dev"
+  ports:
+    - 80:80
+  volumes:
+    - ./app:/var/www/html:rw
+
+mysql:
+  image: mysql:5.7
+  environment:
+    MYSQL_ROOT_PASSWORD: password
+    MYSQL_DATABASE: my-wpdb
+  volumes:
+    - ./database:/var/lib/mysql
