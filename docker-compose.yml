@@ -2,19 +2,19 @@ web:
   image: wordpress
   links:
     - mysql
-  domainname: tripler.dev
+  domainname: artsatlasgeelong.dev
   environment:
     WORDPRESS_DB_PASSWORD: password
-    DOMAIN_NAME: "tripler.dev, www.tripler.dev"
+    DOMAIN_NAME: "artsatlasgeelong.dev, www.artsatlasgeelong.dev"
   ports:
     - 80:80
   volumes:
     - ./app:/var/www/html:rw
 
 mysql:
-  image: mysql:5.7
+  build: mysql
   environment:
     MYSQL_ROOT_PASSWORD: password
-    MYSQL_DATABASE: my-wpdb
+    MYSQL_DATABASE: wpdb
   volumes:
     - ./database:/var/lib/mysql
