@@ -2,10 +2,8 @@ web:
   image: wordpress
   links:
     - mysql
-  domainname: artsatlasgeelong.dev
   environment:
     WORDPRESS_DB_PASSWORD: password
-    DOMAIN_NAME: "artsatlasgeelong.dev, www.artsatlasgeelong.dev"
   ports:
     - 80:80
   volumes:
