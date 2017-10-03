@@ -4,9 +4,8 @@ RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule wp-content/uploads/(.*) \
-    http://artsatlasgeelong.com.au/wp-content/uploads/$1 [NC,L]
+    https://SITE_URL/wp-content/uploads/$1 [NC,L]
 </IfModule>
-
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
 RewriteEngine On
@@ -16,5 +15,4 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]
 </IfModule>
-
 # END WordPress

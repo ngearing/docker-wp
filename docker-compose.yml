@@ -1,31 +1,35 @@
-version: "3.1"
+version: "3.2"
 
 services:
-
   mysql:
-    # image: mysql:5.7
-    build: ./mysql # for import database dump
+    image: mysql:5.6
     environment:
       MYSQL_DATABASE: wpdb
       MYSQL_USER: root
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
-    ports:
-      - 3306:3306
     volumes:
       - ./database:/var/lib/mysql
+    networks:
+      - reverse-proxy
 
   wordpress:
     image: wordpress
-    domainname: ${SITE_DOMAINNAME}
-    hostname: www
-    links:
+    depends_on:
       - mysql
+    domainname: SITE_URL.dev
     environment:
+      VIRTUAL_HOST: SITE_URL.dev
       WORDPRESS_DB_NAME: wpdb
       WORDPRESS_DB_USER: root
       WORDPRESS_DB_PASSWORD: password
-    ports:
-      - 80:80
     volumes:
       - ./app:/var/www/html:rw
+      - .bin/php.ini:/usr/local/etc/php/php.ini
+    networks:
+      - reverse-proxy
+
+networks:
+  reverse-proxy:
+    external:
+      name: reverse-proxy   
